@@ -1,7 +1,8 @@
+require('dotenv').config();
 const { Telegraf, Markup } = require('telegraf');
 const { Configuration, OpenAIApi } = require('openai');
 
-const BOT_TOKEN = process.env.BOT_TOKEN || 'ISI_TOKEN_BOT_TELEGRAM_KAMU';
+const BOT_TOKEN = process.env.BOT_TOKEN;
 
 const bot = new Telegraf(BOT_TOKEN);
 
@@ -99,7 +100,7 @@ bot.on('text', async (ctx) => {
     const openai = new OpenAIApi(configuration);
 
     const res = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo', // ubah sesuai kebutuhan
+      model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: ctx.message.text }]
     });
 
